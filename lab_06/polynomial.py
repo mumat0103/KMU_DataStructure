@@ -6,12 +6,6 @@ class Polynomial:
         self.coef = [0] * (self.degree + 1)
 
     def get_lead_exp(self):  # 최고차항 찾기
-        # exp = 0
-        # for i in range(len(self.coef) - 1, 0, -1):
-        #     if self.coef[i] != 0:
-        #         exp = i
-        #         break
-        # return exp
         i = len(self.coef) - 1
         while i >= 0 and self.coef[i] == 0:
             i -= 1
@@ -28,6 +22,7 @@ class Polynomial:
         # return sum_
         return sum(
             (coef * (x ** exp) for exp, coef in enumerate(self.coef) if coef != 0)
+            #exp = 인덱스, coef = 값
         )
 
     def get_coef(self, exp):  # 계수 찾기
@@ -84,7 +79,8 @@ class Polynomial:
         for coef, exp in [
             (self.coef[i] * other.coef[j], i + j) for i in range(self.degree + 1) if self.coef[i] != 0
             for j in range(other.degree + 1) if other.coef[j] != 0][::-1]:
-            if poly.get_coef(exp) != 0:
+            
+            if poly.get_coef(exp) != 0: #같은 차수 덧셈
                 temp.attach(coef, exp)
                 poly = temp + poly
             else:
