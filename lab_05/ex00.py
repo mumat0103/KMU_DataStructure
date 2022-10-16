@@ -33,11 +33,14 @@ class OrderedList():
         cur = 0
         while cur < len(self) and self[cur] != elem:
             cur += 1
-        return False if cur <= len(self) else True
+        return True if cur <= len(self) else False
 
     def index(self, num):
+        cur = 0
         if num in self.elems:
-            return self.elems[num]
+            while cur < len(self) and self[cur] != num:
+                cur += 1
+            return cur
         else:
             return None
 
@@ -56,4 +59,4 @@ o.remove(23)
 print(o)
 
 print(o.search(43))
-print(o.index(23))
+print(o.index(15))
