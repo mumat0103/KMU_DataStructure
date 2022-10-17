@@ -25,7 +25,7 @@ class CircularDoublyLinkedList:
     def add_head(self, node_new):
         if self.head is None:
             self.head = node_new
-            node_new.rlink = node_new.llink = self.head
+            node_new.rlink = node_new.llink = node_new
         else:
             node_new.llink = self.head.llink
             node_new.rlink = self.head
@@ -37,12 +37,11 @@ class CircularDoublyLinkedList:
     def add_tail(self, node_new):
         if self.head is None:
             self.head = node_new
-            node_new.rlink = node_new.llink = self.head
+            node_new.rlink = node_new.llink = node_new
         else:
             node_new.llink = self.head.llink
             node_new.rlink = self.head
             self.head.llink.rlink = node_new
-            
             self.head.llink = node_new
 
     def delete_head(self):
@@ -75,8 +74,8 @@ class CircularDoublyLinkedList:
         while str(temp) != str(node):
             temp = temp.rlink
 
-        node_new.rlink = temp.rlink
         node_new.llink = temp
+        node_new.rlink = temp.rlink
         temp.rlink.llink = node_new
         temp.rlink = node_new
 
@@ -107,23 +106,28 @@ class CircularDoublyLinkedList:
         while str(temp) != str(node):
             temp = temp.rlink
 
-        if temp is self.head:
-            self.head = temp.rlink
-
-        temp.rlink.llink = temp.llink
-        temp.llink.rlink = temp.rlink
+        if temp == self.head:
+            self.delete_head()
+            return
+        if temp == self.head.llink:
+            self.delete_tail()
+            return
+        prev = temp.llink
+        next = temp.rlink
+        prev.rlink = next
+        next.llink = prev
 
     def __iter__(self):
         self.current = self.head.llink
-        self.count = 0
+        self.flag = 0
         return self
 
     def __next__(self):
         self.current = self.current.rlink
-        if self.current is self.head and self.count == 1:
+        if self.current is self.head and self.flag == 1:
             raise StopIteration
-        if self.current is self.head and self.count == 0:
-            self.count += 1
+        if self.current is self.head and self.flag == 0:
+            self.flag = 1
 
         return self.current
 
@@ -145,13 +149,15 @@ class CircularDoublyLinkedList:
     
 if __name__ == "__main__":
     list_ = CircularDoublyLinkedList()
-    list_.add_head(Node(10))
+    list_.add_tail(Node(10))
     list_.add_tail(Node(20))
-    list_.add_tail(Node(30))
+    list_.add_head(Node(30))
     print(list_)
+    
     for i in list_:
         print("Element:", i)
     print()
+    
     it = iter(list_)
     while True:
         try:
@@ -159,7 +165,7 @@ if __name__ == "__main__":
         except StopIteration:
             break
         print("Element:", i)
-    list_.delete_tail()
+        
     print(list_)
     while not list_.is_empty():
         list_.delete_tail()
