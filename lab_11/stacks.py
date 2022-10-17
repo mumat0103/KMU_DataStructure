@@ -1,3 +1,4 @@
+#20180269 천성규
 from circular_doubly_linked_list import *
 
 class Stack:
