@@ -25,7 +25,7 @@ if __name__ == "__main__":
    
     print(arr)
     index = 3
-    print(f"arr [{index}] = {arr[index]}")
+    print(f"arr[{index}] = {arr[index]}")
     
     for i in arr:
         print(id(i), i)

@@ -95,26 +95,24 @@ print("6)")
 num_bin = "1011"
 print(f"Binary number = {num_bin}")
 
+num_bin = list(num_bin)
 BIT = 3
-num_bin = num_bin[::-1]
-#1101
 num_otc = []
+octal = []
 
-cnt_bit = 0
-
-while cnt_bit < len(num_bin):
+while num_bin:
     cnt, sum_ = 0, 0
 
-    while cnt < BIT:
-        if cnt_bit >= len(num_bin):
-            break
-
-        sum_ += 2**cnt * int(num_bin[cnt_bit])
+    while cnt < BIT and num_bin:
+        octal.append(int(num_bin.pop()))
         cnt += 1
-        cnt_bit += 1
+    cnt = 0
+    while octal:
+        bin_ = octal.pop(0)
+        sum_ += 2**cnt * bin_
+        cnt += 1
 
     num_otc.append(sum_)
 
-num_otc = num_otc[::-1]
-num_otc = "".join(map(str, num_otc))
+num_otc = "".join(map(str, num_otc[::-1]))
 print(f"Octal number = {num_otc}\n")
