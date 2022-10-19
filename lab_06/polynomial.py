@@ -1,5 +1,4 @@
 #20180269 천성규
-
 class Polynomial:
     def __init__(self, degree):
         self.degree = degree
