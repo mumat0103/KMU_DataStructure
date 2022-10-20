@@ -14,11 +14,6 @@ class Polynomial:
         return i
 
     def evaluate(self, x):
-        # sum_ = 0
-        # for i in range(len(self.coef) - 1, 0, -1):
-        #     if self.coef[i] != 0:
-        #         sum_ += self.coef[i] * x ** i
-        # return sum_
         return sum(
             (coef * (x ** exp) for exp, coef in enumerate(self.coef) if coef != 0)
             #exp = 인덱스, coef = 값

@@ -70,22 +70,18 @@ class Polynomial:
     
     def __mul__(self, other): #과제
         poly = Polynomial()
-        term_a = self.terms
-        term_b = other.terms
+
+        for i in self.terms:
+            for j in other.terms:
+                exp = i.exp + j.exp
+                coef = i.coef * j.coef
+                
+                term = poly.find_term(exp)
+                if term is None:
+                    poly.attach(coef, exp)
+                else:
+                    term.coef += coef
         
-        for coef, exp in [
-            (self.terms[i].coef * other.terms[j].coef, self.terms[i].exp + other.terms[j].exp) 
-            for i in range(len(term_a)) if self.terms[i].coef != 0
-            for j in range(len(term_b)) if other.terms[j].coef != 0]:
-            
-            temp = Polynomial()
-            
-            if poly.find_term(exp) is None:
-                poly.attach(coef, exp)
-            else:
-                temp.attach(coef, exp)
-                poly = temp + poly
-                        
         return poly
     
 if __name__ == "__main__":
