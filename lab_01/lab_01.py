@@ -90,6 +90,7 @@ while num_bin:
 
 print(f"Decimal number = {num_dec}\n")
 
+#-----------------------
 
 print("6)")
 num_bin = "1011"

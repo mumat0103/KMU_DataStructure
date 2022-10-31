@@ -118,34 +118,26 @@ class CircularDoublyLinkedList:
         next.llink = prev
 
     def __iter__(self):
-        self.current = self.head.llink
-        self.flag = 0
+        self.next_ = None
         return self
 
     def __next__(self):
-        self.current = self.current.rlink
-        if self.current is self.head and self.flag == 1:
+        if self.head == None or self.next_ == self.head:
             raise StopIteration
-        if self.current is self.head and self.flag == 0:
-            self.flag = 1
-
-        return self.current
+        
+        res = self.head if self.next_ == None else self.next_
+        self.next_ = res.rlink
+        return res
 
     def is_empty(self):
         return True if self.head == None else False
     
     def __str__(self):
         result = []
-        if not self.is_empty():
-            temp = self.head
-            result.append(temp.item)
-            temp = temp.rlink
-            while temp != self.head:
-                result.append(temp.item)
-                temp = temp.rlink                
-            return f"{result}"
-        else:
-            return f"{result}"
+        for i in self:
+            result.append(i)
+        
+        return str(result)
 
 class Stack:
     def __init__(self):

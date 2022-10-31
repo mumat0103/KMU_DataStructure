@@ -1,6 +1,3 @@
-from lab_03 import Element
-
-
 class Elements:
     def __init__(self, cap=10):
         self.cap = cap

@@ -69,8 +69,8 @@ num = 5923
 sum_ = 0
 
 while num > 0:
-    num, r = num // 10, num % 10
-    sum_ += r
+    sum_ = sum_ + num % 10
+    num //= 10
     
 print(f"5) sum = {sum_}\n")
 
@@ -81,10 +81,10 @@ def solution(lst):
     for i in lst:
         freq[i] += 1
             
-    ref = [i for i in range(len(freq)) if freq[i] == max(freq)]
-    if len(lst) == len(ref):
+    ret = [i for i in range(len(freq)) if freq[i] == max(freq)]
+    if len(lst) == len(ret):
         return[]
             
-    return ref
+    return ret
 
 print(solution([1, 2, 3, 4, 5, 5])) #[5]

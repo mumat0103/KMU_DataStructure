@@ -7,7 +7,6 @@ class Tree:
     def build(self, sexpr):
         stack = Stack()
         it = iter(sexpr)
-        print("it", it)
         root = None
         while stack.is_empty() or it:
             try:
@@ -91,8 +90,9 @@ if __name__ == "__main__":
 
 #Tree는 empty 허용 x, Binary Tree는 empty 허용
 #degree : 자식 노드 개수
-#depth : 어떤 노드에서 Root까지 Edge의 개수
-#height : 어떤 노드에서 Leaf Node에서 Edge의 개수
+#depth : Root에서 어떤 노드까지 Edge의 개수
+#height : Leaf Node에서 어떤 노드까지 Edge의 개수
+#size : 모든 노드의 개수
 #Leaf Node : 자식 노드가 없는 노드
 
 #트리의 크기 = 9
@@ -104,3 +104,5 @@ if __name__ == "__main__":
 #B 의 자손 D E F G H I
 #E 의 형제 D F
 #트리의 차수 = 3
+
+#1 풀&컨플릿 2 X 3 컨플릿 4 풀&컨플릿 5 X 6 컨플릿

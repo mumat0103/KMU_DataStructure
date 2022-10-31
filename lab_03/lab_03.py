@@ -71,7 +71,7 @@ class Elements:
 
     def __str__(self):
         return f"{self.elems}"
-    
+
 elems = Elements()
 elems[0] = Element(10)
 elems[1] = Element(20)

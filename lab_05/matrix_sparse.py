@@ -62,6 +62,7 @@ class MatrixSparse:
         if self.sparse is None:
             return
         sparse = [Term() for _ in range(self.size)]
+        
         for e in self.sparse:
             sparse[rowstart[e.col]].row = e.col
             sparse[rowstart[e.col]].col = e.row

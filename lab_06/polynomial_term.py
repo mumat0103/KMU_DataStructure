@@ -1,3 +1,4 @@
+
 class Term:
     def __init__(self, coef =0, exp =0):
         self.coef = coef

@@ -2,8 +2,8 @@ from element import Element
 from elements import Elements
 
 elems = Elements()
-elems[0] = Element(20)
-elems[1] = Element(20)
+elems[0] = Element(100)
+elems[3] = Element(20)
 
 print(elems)
 
