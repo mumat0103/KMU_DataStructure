@@ -55,12 +55,16 @@ class ThreadedBinaryTree:
     
     def __build(self):
         """using inorder traversal"""
-        root = self.root
-        stack = Stack()
-        actions = []
-        # using inorder traversal
+        if self.root == None:
+            return
         
-        self.head.left_child = root
+        self.head.left_thread = False
+        self.head.left_child = self.root
+        
+        stack = Stack()
+        pred = self.head
+        root = self.root
+        
         while not stack.is_empty() or root != None:
             while root != None:
                 stack.push(root)
@@ -71,22 +75,17 @@ class ThreadedBinaryTree:
             
             if node.left_child == None:
                 node.left_thread = True
+                node.left_child = pred
                 
-            if node.right_child == None:
-                node.right_thread = True
-            
+            if pred.right_child == None:
+                pred.right_thread = True
+                pred.right_child = node
+                
             root = node.right_child
+            pred = node
             
-            if not stack.is_empty() and node.right_thread == True:
-                node.right_child = stack.peek()
-            if len(actions) > 0 and node.left_thread == True:
-                node.left_child = actions[-1]
-            
-            if node.left_child == None:
-                node.left_child = self.head
-            if node.right_child == None:
-                node.right_child = self.head
-            actions.append(node)
+        pred.right_child = self.head
+        pred.right_thread = True
 
     def find_successor(self, root):
         node = root.right_child
@@ -97,8 +96,8 @@ class ThreadedBinaryTree:
         return node
     
     def traverse_inorder(self):
-        root = self.find_successor(self.head)
         ret = []
+        root = self.find_successor(self.head)
         
         while root is not None and root is not self.head:
             ret.append(root)
