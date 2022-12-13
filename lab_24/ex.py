@@ -4,7 +4,7 @@ class GraphDijkstra:
     def __init__(self, cost):
         self.cost = cost
         self.size = len(cost)
-
+    
     def cal_dijkstra(self, v):
         visited = [False] * self.size
         dist, info = [math.inf] * self.size, [(math.inf, None)] * self.size
@@ -15,16 +15,11 @@ class GraphDijkstra:
         for i in range(self.size):
             u = self.choose(dist, visited, v)
             visited[u] = True
-
             for v in range(self.size):
-                if (
-                    self.cost[u][v] > 0
-                    and not visited[v]
-                    and dist[v] > dist[u] + self.cost[u][v]
-                ):
-                    dist[v] = dist[u] + self.cost[u][v]
-                    info[v] = (dist[v], u)
-
+                if self.cost[u][v] > 0 and not visited[v] and dist[v] > dist[u] + self.cost[u][v]:
+                    
+                
+                
             print(
                 f"{i:4}",
                 f"{str([j for j in range(len(visited)) if visited[j] == True]):>20}",
@@ -33,13 +28,13 @@ class GraphDijkstra:
                 info,
             )
         return dist, info
-
+    
     def choose(self, dist, found, v):
-        dist_min = math.inf     # infinity
+        min = math.inf
         pos = v
         for i in range(self.size):
-            if dist[i] < dist_min and not found[i]:
-                dist_min = dist[i]
+            if dist[i] < min and not found[i]:
+                min = dist[i]
                 pos = i
         return pos
 
@@ -60,7 +55,7 @@ def print_mat(mat):
 
 
 if __name__ == "__main__":
-    mat_ = read_input("input_00.dat")
+    mat_ = read_input(r"C:\Users\wsx21\OneDrive\School\3-2\자료구조\lab\lab_24\input_00.dat")
     print("input matrix:")
     print_mat(mat_)
 
