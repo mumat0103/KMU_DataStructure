@@ -86,9 +86,9 @@ class BTree:
             if root == None:
                 return
             
-            inorder_recursive(root.left_child)
-            ret.append(root)
-            inorder_recursive(root.right_child)
+            inorder_recursive(root.left_child) #L
+            ret.append(root) #V
+            inorder_recursive(root.right_child) #R
             
         inorder_recursive(self.root)
         return ret
@@ -118,9 +118,9 @@ class BTree:
             if root == None:
                 return
             
-            ret.append(root)
-            preorder_recursive(root.left_child)
-            preorder_recursive(root.right_child)
+            ret.append(root) #V
+            preorder_recursive(root.left_child) #L
+            preorder_recursive(root.right_child) #R
             
         preorder_recursive(self.root)
         return ret

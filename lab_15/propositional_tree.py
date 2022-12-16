@@ -50,15 +50,32 @@ class PropositionalTree:
         ret = None
         
         def calculate_recursive(root):
-            nonlocal ret
             if root == None:
                 return
             
-            calculate_recursive(root.left_child)
-            calculate_recursive(root.right_child)
-            ret.append(root)
+            calculate_recursive(root.left_child) #L
+            calculate_recursive(root.right_child) #R
+
+            #V
+            if str.isdigit(root.elem):
+                root.elem = param[int(root.elem)]
+                
+            if root.elem == "AND":
+                root.value = root.right_child.value and root.left_child.value
+            elif root.elem == "OR":
+                root.value = root.right_child.value or root.left_child.value
+            elif root.elem == "NOT":
+                root.value = not root.right_child.value 
+            elif root.elem == False:
+                root.value = False
+            elif root.elem == True:
+                root.value = True
+            else:
+                raise Exception("has a wrong logical operator")
+            
+            return root
         
-        calculate_recursive(self.root)
+        ret = calculate_recursive(self.root)
         return ret
     
     def traverse_postorder(self):
@@ -133,7 +150,7 @@ if __name__ == "__main__":
     tree = PropositionalTree(root)
     actions = tree.traverse_postorder()
     print(actions)
-    # prop = tree.calculate_propositional(False, True, False)
-    # print(prop.value)
+    prop = tree.calculate_propositional(False, True, False)
+    print(prop.value)
     
     #x0 = 0 x1 = 1 x2 = 2

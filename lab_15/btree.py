@@ -234,7 +234,7 @@ if __name__ == "__main__":
         
     for e in sexpr:
         found = tree.search_bfs(e)
-        # print("target:", e, " found:", found)
+        print("target:", e, " found:", found)
         
     tree1 = tree.copy() #별도의 메모리
     tree2 = tree.copy_builtin() #별도의 메모리
@@ -243,14 +243,14 @@ if __name__ == "__main__":
     
     tree.root.left_child.right_child.elem = "Z"
     actions = tree.traverse_postorder()
-    # print(actions)
+    print(actions)
     actions = tree1.traverse_postorder()
-    # print(actions)
+    print(actions)
     tree1.root.left_child.right_child.elem = "W"
     actions = tree1.traverse_postorder()
-    # print(actions)
+    print(actions)
     actions = tree2.traverse_postorder()
-    # print(actions)
+    print(actions)
     actions = tree3.traverse_postorder()
-    # print(actions)
+    print(actions)
 

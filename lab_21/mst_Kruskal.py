@@ -86,7 +86,7 @@ def print_mat(mat):
         print("\b")
 
 if __name__ == "__main__":
-    mat_ = read_input("input_g1.dat")
+    mat_ = read_input(r"C:\Users\wsx21\OneDrive\School\3-2\자료구조\lab\lab_21\input_g1.dat")
     print("Input matrix:")
     print_mat(mat_)
     print()

@@ -35,7 +35,7 @@ class GraphDijkstra:
         return dist, info
 
     def choose(self, dist, found, v):
-        dist_min = math.inf     # infinity
+        dist_min = math.inf
         pos = v
         for i in range(self.size):
             if dist[i] < dist_min and not found[i]:
@@ -60,7 +60,7 @@ def print_mat(mat):
 
 
 if __name__ == "__main__":
-    mat_ = read_input("input_00.dat")
+    mat_ = read_input(r"C:\Users\wsx21\OneDrive\School\3-2\자료구조\lab\lab_24\input_00.dat")
     print("input matrix:")
     print_mat(mat_)
 

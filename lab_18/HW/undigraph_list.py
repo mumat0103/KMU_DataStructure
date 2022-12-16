@@ -14,13 +14,6 @@ class UndiGraph:
         self.linked = [None] * self.vertices
         self.__build()
     
-    # def __build(self):
-    #     for row in range(self.vertices):
-    #         for col in range(self.vertices):
-    #             if self.mat[row][col] == 0:
-    #                 continue
-    #             self.add_edge(row, col)
-    
     def __build(self):
         size = len(mat)
         for row in range(size):
@@ -81,7 +74,7 @@ def print_mat(mat):
         print("\b")
 
 if __name__ == "__main__":
-    mat = read_input(r"C:\Users\wsx21\OneDrive\School\3-2\자료구조\lab\lab_18\HW\input_g1.dat")
+    mat = read_input(r"C:\Users\wsx21\OneDrive\School\3-2\자료구조\lab\lab_18\HW\input_g4.dat")
     print("Input matrix")
     print_mat(mat)
     print()

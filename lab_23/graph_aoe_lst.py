@@ -77,7 +77,6 @@ class GraphAoeLstBuilder:
 
         return ret
 
-
 class GraphAoeLst:
     def __init__(self, mat, list_, est):
         self.list_ = list_ # inverse adjacency list

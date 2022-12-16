@@ -71,8 +71,8 @@ class GraphAoeEstBuilder:
                 if not mat[row][col]:
                     continue
                 
-                node = Node(row, mat[row][col])
-                node.link = prev
+                node = Node(col, mat[row][col])
+                prev.link = node
                 prev = node
                 
         return ret
@@ -165,7 +165,7 @@ def print_mat(mat):
         print("\b")    
 
 if __name__ == "__main__":
-    mat_ = read_input("input_aoe_00.dat")
+    mat_ = read_input(r"C:\Users\wsx21\OneDrive\School\3-2\자료구조\lab\lab_22\input_aoe_00.dat")
     print("Input matrix:")
     print_mat(mat_)
     

@@ -56,7 +56,7 @@ class ThreadedBinaryTree:
     def __build(self):
         """using inorder traversal"""
         if self.root == None:
-            return
+            return None
         
         self.head.left_thread = False
         self.head.left_child = self.root

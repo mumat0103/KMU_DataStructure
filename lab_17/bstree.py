@@ -156,11 +156,10 @@ class BSTree:
             if elem == root.elem:
                 return root
             
-            if elem < root.elem:
-                root = search_recursive(root.left_child)
-            else:
-                root = search_recursive(root.right_child)
-                
+            root = (search_recursive(root.left_child)
+                    if elem < root.elem 
+                    else search_recursive(root.right_child)
+                    )
             return root        
         return search_recursive(self.root)
     
@@ -196,9 +195,6 @@ class BSTree:
             parent.right_child = node_new
             
     def insert(self, elem):
-        parent = None
-        root = self.root
-        
         def insert_recursive(root):
             if root == None:
                 return TreeNode(elem)
@@ -217,6 +213,7 @@ class BSTree:
             
     def delete(self, elem):
         def delete_recursive(root):
+            nonlocal elem
             if root is None:
                 return root
 
@@ -234,20 +231,20 @@ class BSTree:
                     root = None
                     return temp
 
-                current = root.left_child
-                temp_root = root
-
+                current = root
+                current = current.left_child
+                
                 while current.right_child is not None:
                     current = current.right_child
+                    
+                root.elem = current.elem
+                
+                elem = root.elem
+                root.left_child = delete_recursive(root.left_child)
 
-                temp = current
-                temp_root.elem = temp.elem
-
-                temp_root.right_child = delete_recursive(temp_root.elem)
-
-            return
-            
+            return root
         
+        self.root = delete_recursive(self.root)
     
 if __name__ == "__main__":
     sexpr = "( 30 ( 5 ( 2 # ) 40 ) )".split()
@@ -255,18 +252,21 @@ if __name__ == "__main__":
     root = BTreeBuilder.build(sexpr)
     tree = BSTree(root)
     
-    found = tree.search(5)
-    print(found)
-    found = tree.search(2)
-    print(found)
-    found = tree.search(40)
-    print(found)
-    found = tree.search(30)
-    print(found)
-    found = tree.search(35)
-    print(found)
+    # found = tree.search(5)
+    # print(found)
+    # found = tree.search(2)
+    # print(found)
+    # found = tree.search(40)
+    # print(found)
+    # found = tree.search(30)
+    # print(found)
+    # found = tree.search(35)
+    # print(found)
 
+    tree.insert(80)
     actions = tree.traverse_preorder()
     print(actions)
     
-    tree.delete(40)
+    tree.delete(80)
+    actions = tree.traverse_preorder()
+    print(f"{actions}")

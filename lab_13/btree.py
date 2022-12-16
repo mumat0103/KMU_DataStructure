@@ -129,6 +129,3 @@ if __name__ == "__main__":
     print(root)
     print(root.left_child)
     print(root.right_child)
-    
-#full Btree = 0개 or 2개
-#complete Btree = 왼쪽부터 채우는가
