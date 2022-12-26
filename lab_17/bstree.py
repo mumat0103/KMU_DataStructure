@@ -232,12 +232,12 @@ class BSTree:
                     return temp
 
                 current = root
-                current = current.left_child
                 
-                while current.right_child is not None:
+                current = current.left_child #노드의 왼쪽으로 보내고
+                while current.right_child is not None: #그 중 제일 큰 값 찾고
                     current = current.right_child
                     
-                root.elem = current.elem
+                root.elem = current.elem #서브트리 루트랑 현재 값이랑 교체
                 
                 elem = root.elem
                 root.left_child = delete_recursive(root.left_child)
